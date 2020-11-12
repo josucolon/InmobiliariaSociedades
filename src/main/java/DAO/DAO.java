@@ -47,6 +47,7 @@ public class DAO {
 		}	
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static ArrayList<Sociedad> LeerSociedades ()
 	{
 	
@@ -57,6 +58,7 @@ public class DAO {
 
 			transaction.begin();
 
+			@SuppressWarnings("rawtypes")
 			Extent<Sociedad> extent = (Extent) persistentManager.getExtent(Sociedad.class, true);
 			
 			for (Sociedad soc : extent)
@@ -90,6 +92,7 @@ public class DAO {
 
 			transaction.begin();
 
+			@SuppressWarnings({ "unchecked", "rawtypes" })
 			Extent<Usuario> extent = (Extent) persistentManager.getExtent(Usuario.class, true);
 			
 			for (Usuario usuario : extent)
@@ -112,7 +115,8 @@ public class DAO {
 		return usuarios;
 	}
 
-	public static ArrayList<Alquiler> LeerVuelo ()
+	@SuppressWarnings("rawtypes")
+	public static ArrayList<Alquiler> LeerAlquiler ()
 	{
 	
 		
@@ -122,6 +126,7 @@ public class DAO {
 
 			transaction.begin();
 
+			@SuppressWarnings("unchecked")
 			Extent<Alquiler> extent = (Extent) persistentManager.getExtent(Alquiler.class, true);
 			
 			for (Alquiler alquiler : extent)
@@ -195,6 +200,7 @@ public class DAO {
 		}
 	}
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static void modificarSociedad(int id, String nombre, int capacidadMax, String direccion)
 	{
 		Extent<Sociedad> extent = (Extent) persistentManager.getExtent(Sociedad.class, false);
@@ -224,6 +230,7 @@ public class DAO {
 		}finally{}
 	}
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static void modificarUsuario( String dni, String password, String nombre, String apellido, int anoNac, String correo, int tlf)
 	{
 		Extent<Usuario> extent = (Extent) persistentManager.getExtent(Usuario.class, false);
@@ -256,6 +263,7 @@ public class DAO {
 		}finally{}
 	}
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static void modificarAlquiler( int id, int hora, int dia, int mes, int anyo, String dniUsuario, int idSociedad)
 	{
 		Extent<Alquiler> extent = (Extent) persistentManager.getExtent(Alquiler.class, false);
@@ -288,6 +296,7 @@ public class DAO {
 		}finally{}
 	}
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static void eliminarSociedad(int id)
 	{
 		Extent<Sociedad> extent = (Extent) persistentManager.getExtent(Sociedad.class, false);

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
 
+
 @PersistenceCapable
 public class Alquiler implements Serializable {
 	
