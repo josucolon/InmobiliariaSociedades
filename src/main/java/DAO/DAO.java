@@ -114,6 +114,44 @@ public class DAO {
 	
 		return usuarios;
 	}
+	
+	public static Usuario getUser (String dni)
+	{
+	
+		
+		Usuario user= new Usuario();
+//		ArrayList<Usuario> usuarios = new ArrayList<Usuario> ();
+		
+		try {				
+
+			transaction.begin();
+
+			@SuppressWarnings({ "unchecked", "rawtypes" })
+			Extent<Usuario> extent = (Extent) persistentManager.getExtent(Usuario.class, true);
+			
+			for (Usuario usuario : extent)
+			{
+				if (usuario.getDni().equals(dni))
+				{
+					return usuario;
+					
+				}
+			}
+
+			transaction.commit();
+
+		} catch(Exception ex) {
+			System.err.println("* Exception reading data from db: " + ex.getMessage());
+		} finally {		    
+			if (transaction.isActive()) 
+			{
+				transaction.rollback();
+			}   
+			persistentManager.close();
+		}	
+	
+		return user;
+	}
 
 	@SuppressWarnings("rawtypes")
 	public static ArrayList<Alquiler> LeerAlquiler ()

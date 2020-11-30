@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
 import LN.Usuario;
+import DAO.DAO;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -87,10 +88,10 @@ public class InicioSesion extends JFrame {
 		lblPassword.setBounds(173, 300, 113, 16);
 		contentPane.add(lblPassword);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon(InicioSesion.class.getResource("/images/logo.png")));
-		lblNewLabel.setBounds(137, 28, 217, 130);
-		contentPane.add(lblNewLabel);
+		//JLabel lblNewLabel = new JLabel("New label");
+//		lblNewLabel.setIcon(new ImageIcon(InicioSesion.class.getResource("/images/logo.png")));
+//		lblNewLabel.setBounds(137, 28, 217, 130);
+//		contentPane.add(lblNewLabel);
 		
 		JButton bRegistro = new JButton("Registrarse");
 		bRegistro.setBounds(173, 449, 132, 25);
@@ -107,42 +108,34 @@ public class InicioSesion extends JFrame {
 			
 			public void actionPerformed(ActionEvent e) 
 			{
-//				String usuario = txtUsuario.getText();
-//				usuario = usuario.toUpperCase();
-//				String contrasenya = String.valueOf(pwdPassword.getPassword());
+				String usuario = txtUsuario.getText();
+				usuario = usuario.toUpperCase();
+				String contrasenya = String.valueOf(pwdPassword.getPassword());
 //				contrasenya = contrasenya.toUpperCase();
+				Usuario user = DAO.getUser(usuario);
 //				try 
 //				{
-//					if (usuario.equals("ADMIN") && contrasenya.equals("ADMIN") )
-//					{
-//						frPrincipalAdmin ventana1 = new frPrincipalAdmin();
-//						ventana1.setVisible(true);
-//						dispose();
-//					}
-//					else{
-//						if (BD.inicioSesion(usuario, contrasenya))
-//					{
-//						
-//						Usuario user = BD.getUser(usuario);
-//						frPrincipal ventana = new frPrincipal (user);
-//						ventana.setVisible(true);
-//						dispose();
-//					}
-//					else
-//					{
-//						lblElUsuarioO.setVisible(true);
-//						txtUsuario.setText("");
-//						pwdPassword.setText("");
-//					}
-//					}
-//					
+				if (contrasenya.equals(user.getPassword()) )
+				{
+					frPrincipal ventana1 = new frPrincipal(user);
+					ventana1.setVisible(true);
+					dispose();
+				}
+				else
+				{
+					lblElUsuarioO.setVisible(true);
+					txtUsuario.setText("");
+					pwdPassword.setText("");
+				}
+					
+				
 //				} 
 //				catch (ClassNotFoundException e1) 
 //				{
 //					e1.printStackTrace();
 //				}
-//			}
 			}
+			
 	});
 	
 	bRegistro.addActionListener( new ActionListener()

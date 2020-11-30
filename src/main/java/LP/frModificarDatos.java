@@ -36,7 +36,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 
-public class Registro extends JFrame {
+public class frModificarDatos extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -53,7 +53,7 @@ public class Registro extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Registro() {
+	public frModificarDatos(Usuario user) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 503, 553);
 		contentPane = new JPanel();
