@@ -43,7 +43,7 @@ public class DAO {
 			{
 				transaction.rollback();
 			}   
-			//persistentManager.close();
+			persistentManager.close();
 		}	
 	}
 	
@@ -220,17 +220,18 @@ public class DAO {
 			if(transaction.isActive()){
 				transaction.rollback();
 			}
-			
+//			System.out.println("pruebaaaa");
 			persistentManager.close();
 		}
 		
 	}
 	
-	public static void addAlquiler (int id, int hora, int dia, int mes, int anyo, String dniUsuario, int idSociedad)
+	public static boolean addAlquiler (int id, int hora, int dia, int mes, int anyo, String dniUsuario, int idSociedad)
 	{
 		try{
 			Alquiler alquiler = new Alquiler(id, hora, dia, mes, anyo, dniUsuario, idSociedad);
 			persistentManager.makePersistent(alquiler);
+			return true;
 		}catch(Exception e){
 			System.err.println("Excepcion al introducir un nuevo alquiler en la BD: " + e.getMessage());     
 		}
@@ -241,10 +242,11 @@ public class DAO {
 			
 			persistentManager.close();
 		}
+		return false;
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public static void modificarSociedad(int id, String nombre, int capacidadMax, String direccion)
+	public static boolean modificarSociedad(int id, String nombre, int capacidadMax, String direccion)
 	{
 		Extent<Sociedad> extent = (Extent) persistentManager.getExtent(Sociedad.class, false);
 		ArrayList<Sociedad> sociedades= new ArrayList<Sociedad>();
@@ -266,15 +268,17 @@ public class DAO {
 					soc.setNombre(nombre);
 					soc.setCapacidadMax(capacidadMax);
 					soc.setDireccion(direccion);
+					return true;
 				}else{
 					System.out.println("No existe la sociedad que desea modificar");
 				}
 			}
 		}finally{}
+		return false;
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public static void modificarUsuario( String dni, String password, String nombre, String apellido, int anoNac, String correo, int tlf)
+	public static boolean modificarUsuario( String dni, String password, String nombre, String apellido, int anoNac, String correo, int tlf)
 	{
 		Extent<Usuario> extent = (Extent) persistentManager.getExtent(Usuario.class, false);
 		ArrayList<Usuario> usuarios= new ArrayList<Usuario>();
@@ -292,22 +296,24 @@ public class DAO {
 				dniNuevo= u.getDni();
 				if(dniNuevo.equals(dniMod))
 				{
-					Usuario user= persistentManager.getObjectById(Usuario.class, dniMod);
+					Usuario user = persistentManager.getObjectById(Usuario.class, dniMod);
 					user.setPassword(password);
 					user.setNombre(nombre);
 					user.setApellido(apellido);
 					user.setAnoNac(anoNac);
 					user.setCorreo(correo);
 					user.setTlf(tlf);
+					return true;
 				}else{
 					System.out.println("No existe el usuario que desea modificar");
 				}
 			}
 		}finally{}
+		return false;
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public static void modificarAlquiler( int id, int hora, int dia, int mes, int anyo, String dniUsuario, int idSociedad)
+	public static boolean modificarAlquiler( int id, int hora, int dia, int mes, int anyo, String dniUsuario, int idSociedad)
 	{
 		Extent<Alquiler> extent = (Extent) persistentManager.getExtent(Alquiler.class, false);
 		ArrayList<Alquiler> alquileres= new ArrayList<Alquiler>();
@@ -332,15 +338,17 @@ public class DAO {
 					alq.setAnyo(anyo);
 					alq.setDniUsuario(dniUsuario);
 					alq.setIdSociedad(idSociedad);
+					return true;
 				}else{
 					System.out.println("No existe el alquiler que desea modificar");
 				}
 			}
 		}finally{}
+		return false;
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public static void eliminarSociedad(int id)
+	public static boolean eliminarSociedad(int id)
 	{
 		Extent<Sociedad> extent = (Extent) persistentManager.getExtent(Sociedad.class, false);
 		ArrayList<Sociedad> sociedades= new ArrayList<Sociedad>();
@@ -360,14 +368,18 @@ public class DAO {
 				{
 					Sociedad soc= persistentManager.getObjectById(Sociedad.class, idMod);
 					persistentManager.deletePersistent(soc);
+					return true;
 					
 				}else{
 					System.out.println("No existe la sociedad que desea modificar");
+//					return false;
 				}
 			}
 		}finally{}
+		return false;
 	}
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static boolean eliminarUsuario( String dni)
 	{
 		Extent<Usuario> extent = (Extent) persistentManager.getExtent(Usuario.class, false);
@@ -391,7 +403,7 @@ public class DAO {
 					return true;
 				}else{
 					System.out.println("No existe el usuario que desea modificar");
-					return false;
+//					return false;
 				}
 			}
 		}finally{}

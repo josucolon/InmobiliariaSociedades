@@ -2,10 +2,15 @@
 
 //import org.junit.Test;
 
+import org.datanucleus.store.types.wrappers.ArrayList;
+import org.junit.runner.RunWith;
+
 import DAO.DAO;
+import LN.Sociedad;
 import LN.Usuario;
 import junit.framework.TestCase;
 
+//@RunWith(MockitoJUnitRunner.class)
 public class DAOTest extends TestCase {
 
 //	@Test
@@ -15,30 +20,26 @@ public class DAOTest extends TestCase {
 //	}
 	
 //	@Test
-//	public void testLeerSociedades() {
-//		fail("Not yet implemented");
-//	}
+	public void testLeerSociedades() 
+	{
+		java.util.ArrayList<Sociedad> sociedades = DAO.LeerSociedades();
+		assertFalse(sociedades.isEmpty());
+	}
 //
 //	@Test
-//	public void testLeerUsuarios() {
-//		fail("Not yet implemented");
-//	}
+	public void testLeerUsuarios() 
+	{
+		java.util.ArrayList<Usuario> usuarios =  DAO.LeerUsuarios();
+		assertFalse(usuarios.isEmpty());
+	}
 //
 //	@Test
-//	public void testGetUser() 
-//	{
-//		Usuario a = DAO.getUser("1111");
-//		System.out.println(a.getDni());
-//		System.out.println(a.getPassword());
-//		System.out.println(a.getAnoNac());
-//		System.out.println(a.getApellido());
-//		System.out.println(a.getNombre());
-//		System.out.println(a.getCorreo());
-//		System.out.println(a.getTlf());
-//		Usuario b = new Usuario ("1111", "abc", "julen", "martin", 1997, "j@j.com", 666);
-//		assertEquals(a,b);
-//
-//	}
+	public void testGetUser() 
+	{
+		Usuario a = DAO.getUser("00");
+		Usuario b = new Usuario ("00", "abc", "julen", "martin", 1997, "j@j.com", 666);
+		assertEquals(a.getDni(),b.getDni());
+	}
 //
 //	@Test
 //	public void testLeerAlquiler() {
@@ -46,32 +47,44 @@ public class DAOTest extends TestCase {
 //	}
 //
 //	@Test
-//	public void testAddSociedad() {
-//		fail("Not yet implemented");
-//	}
+	public void testAddSociedad() 
+	{		
+		boolean a = true;
+		boolean b = DAO.addSociedad(14, "lizardi", 10, "sanse");
+		assertEquals(a,b);
+	}
 //
 //	@Test
 	public void testAddUsuario() 
 	{
 		boolean a = true;
-		boolean b = DAO.addUsuario("11111", "abcd", "julenn", "martinn", 19972, "j@j.com", 6666);
+		boolean b = DAO.addUsuario("1234ab", "abcd", "julenn", "martinn", 19972, "j@j.com", 6666);
 		assertEquals(a,b);
 	}
 //
 //	@Test
-//	public void testAddAlquiler() {
-//		fail("Not yet implemented");
+//	public void testAddAlquiler() 
+//	{
+//		boolean a = true;
+//		boolean b = DAO.addAlquiler(2, 1, 1, 1, 1, "00", 13);
+//		assertEquals(a,b);
 //	}
 //
 //	@Test
-//	public void testModificarSociedad() {
-//		fail("Not yet implemented");
-//	}
+	public void testModificarUsuario() 
+	{
+		boolean a = true;
+		boolean b = DAO.modificarUsuario("aa", "abcde", "jos", "migu", 1, "j@j.com", 66);
+		assertEquals(a,b);
+	}
 //
 //	@Test
-//	public void testModificarUsuario() {
-//		fail("Not yet implemented");
-//	}
+	public void testModificarSociedad() 
+	{
+		boolean a = true;
+		boolean b = DAO.modificarSociedad(13, "kresala", 20, "tolo");
+		assertEquals(a,b);
+	}
 //
 //	@Test
 //	public void testModificarAlquiler() {
@@ -79,16 +92,18 @@ public class DAOTest extends TestCase {
 //	}
 //
 //	@Test
-//	public void testEliminarSociedad() {
-//		fail("Not yet implemented");
-//	}
+	public void testEliminarSociedad() 
+	{
+		boolean a = true;
+		boolean b = DAO.eliminarSociedad(12);
+		assertEquals(a,b);
+	}
 //
 //	@Test
 	public void testEliminarUsuario() 
 	{
 		boolean a = true;
-		boolean b = DAO.eliminarUsuario("1111");
-		System.out.println(b);
+		boolean b = DAO.eliminarUsuario("a");
 		assertEquals(a,b);
 	}
 //
