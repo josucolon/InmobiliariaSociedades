@@ -368,7 +368,7 @@ public class DAO {
 		}finally{}
 	}
 	
-	public static void eliminarUsuario( String dni)
+	public static boolean eliminarUsuario( String dni)
 	{
 		Extent<Usuario> extent = (Extent) persistentManager.getExtent(Usuario.class, false);
 		ArrayList<Usuario> usuarios= new ArrayList<Usuario>();
@@ -388,11 +388,14 @@ public class DAO {
 				{
 					Usuario user= persistentManager.getObjectById(Usuario.class, dniMod);
 					persistentManager.deletePersistent(user);
+					return true;
 				}else{
 					System.out.println("No existe el usuario que desea modificar");
+					return false;
 				}
 			}
 		}finally{}
+		return false;
 	}
 	
 	public static void eliminarAlquiler( int id)
