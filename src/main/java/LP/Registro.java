@@ -157,25 +157,49 @@ public class Registro extends JFrame {
 					
 					public void actionPerformed(ActionEvent e) 
 					{
+						int telefono = 0;
+						int aoNacimiento = 0;
+//						System.out.println("prueba");
 						try
 						{
+							System.out.println("prueba2");
 							String Nombre = textField.getText();
+//							System.out.println(Nombre);
 							Nombre = Nombre.toUpperCase();
 							String Apellido = textField_1.getText();
+//							System.out.println(Apellido);
 							Apellido = Apellido.toUpperCase();
 							String dni = textField_2.getText();
+//							System.out.println(dni);
 							dni = dni.toUpperCase();
 							String Contrasea = textField_3.getText();
-							String tlf = textField_4.getText();
-							int telefono = Integer.parseInt(tlf);
-							String correo = textField_5.getText();
+//							System.out.println(Contrasea);
+							String tlf = textField_5.getText();
+//							System.out.println("prueba5");
+							try
+							{
+								 telefono = Integer.parseInt(tlf);
+							}catch (NumberFormatException e1)
+							{
+								System.out.println(tlf + " no es un numero");
+							}
+//							System.out.println("prueba6");
+							String correo = textField_4.getText();
+							System.out.println(correo);
 							String aoNac = textField_6.getText();
-							int aoNacimiento = Integer.parseInt(aoNac);
-
+							try
+							{
+								 aoNacimiento = Integer.parseInt(aoNac);
+							}catch (NumberFormatException e1)
+							{
+								System.out.println(aoNac + " no es un numero");
+								
+							}
+//							System.out.println("prueba3");
 							if (rdbtnAceptoLosTrminos.isSelected())	
 							{
-								DAO.addUsuario(dni,Contrasea,Nombre,Apellido, aoNacimiento, correo, telefono);
-							
+								boolean a = DAO.addUsuario(dni,Contrasea,Nombre,Apellido, aoNacimiento, correo, telefono);
+								System.out.println(a);
 								Usuario user = DAO.getUser(dni);
 				
 								frPrincipal ventana = new frPrincipal (user);

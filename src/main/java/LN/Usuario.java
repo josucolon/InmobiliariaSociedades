@@ -37,6 +37,7 @@ public class Usuario implements Serializable {
 	public Usuario() {
 		// TODO Auto-generated constructor stub
 	}
+	
 
 	public String getDni() {
 		return dni;

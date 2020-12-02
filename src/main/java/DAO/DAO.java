@@ -187,13 +187,15 @@ public class DAO {
 		return alquileres;
 	}
 	
-	public static void addSociedad (int id, String nombre, int capacidadMax, String direccion)
+	public static boolean addSociedad (int id, String nombre, int capacidadMax, String direccion)
 	{
 		try{
 			Sociedad sociedad = new Sociedad(id, nombre, capacidadMax, direccion);
 			persistentManager.makePersistent(sociedad);
+			return true;
 		}catch(Exception e){
-			System.err.println("Excepcion al introducir una nueva sociedad en la BD: " + e.getMessage());     
+			System.err.println("Excepcion al introducir una nueva sociedad en la BD: " + e.getMessage()); 
+			return false;
 		}
 		finally{
 			if(transaction.isActive()){
@@ -204,13 +206,15 @@ public class DAO {
 		}
 	}
 	
-	public static void addUsuario (String dni, String password, String nombre, String apellido, int anoNac, String correo, int tlf)
+	public static boolean addUsuario (String dni, String password, String nombre, String apellido, int anoNac, String correo, int tlf)
 	{
 		try{
 			Usuario usuario = new Usuario(dni, password, nombre, apellido, anoNac, correo, tlf);
 			persistentManager.makePersistent(usuario);
+			return true;
 		}catch(Exception e){
-			System.err.println("Excepcion al introducir un nuevo usuario en la BD: " + e.getMessage());     
+			System.err.println("Excepcion al introducir un nuevo usuario en la BD: " + e.getMessage());   
+			return false;
 		}
 		finally{
 			if(transaction.isActive()){
@@ -219,6 +223,7 @@ public class DAO {
 			
 			persistentManager.close();
 		}
+		
 	}
 	
 	public static void addAlquiler (int id, int hora, int dia, int mes, int anyo, String dniUsuario, int idSociedad)
