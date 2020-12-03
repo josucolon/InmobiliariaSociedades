@@ -22,6 +22,7 @@ import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 
+import LN.Alquiler;
 import LN.Usuario;
 
 import java.awt.Color;
@@ -80,21 +81,19 @@ public class frModificarDatos extends JFrame {
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
-		JLabel lblUsuario = new JLabel("DNI:");
-		lblUsuario.setBounds(43, 197, 56, 16);
-		contentPane.add(lblUsuario);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(43, 226, 116, 22);
-		contentPane.add(textField_2);
-		textField_2.setColumns(10);
+		
+//		textField_2 = new JTextField();
+//		textField_2.setBounds(43, 226, 116, 22);
+//		contentPane.add(textField_2);
+//		textField_2.setColumns(10);
 		
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
-		lblContrasea.setBounds(43, 263, 116, 16);
+		lblContrasea.setBounds(43, 197, 116, 16);
 		contentPane.add(lblContrasea);
 		
 		textField_3 = new JTextField();
-		textField_3.setBounds(43, 292, 116, 22);
+		textField_3.setBounds(43, 221, 116, 22);
 		contentPane.add(textField_3);
 		textField_3.setColumns(10);
 		
@@ -102,25 +101,25 @@ public class frModificarDatos extends JFrame {
 		bVolver.setBounds(12, 456, 98, 25);
 		contentPane.add(bVolver);
 		
-		JRadioButton rdbtnAceptoLosTrminos = new JRadioButton("Acepto los t\u00E9rminos de uso de pol\u00EDtica y privacidad de la plataforma");
-		rdbtnAceptoLosTrminos.setBackground(Color.LIGHT_GRAY);
-		rdbtnAceptoLosTrminos.setBounds(43, 375, 420, 53);
-		contentPane.add(rdbtnAceptoLosTrminos);
+//		JRadioButton rdbtnAceptoLosTrminos = new JRadioButton("Acepto los t\u00E9rminos de uso de pol\u00EDtica y privacidad de la plataforma");
+//		rdbtnAceptoLosTrminos.setBackground(Color.LIGHT_GRAY);
+//		rdbtnAceptoLosTrminos.setBounds(43, 375, 420, 53);
+//		contentPane.add(rdbtnAceptoLosTrminos);
 		
-		JButton bAceptar = new JButton("Registrar");
+		JButton bAceptar = new JButton("Modificar");
 		bAceptar.setBounds(256, 282, 152, 43);
 		contentPane.add(bAceptar);
 		
-		JLabel lblRegistro = new JLabel("REGISTRO");
+		JLabel lblRegistro = new JLabel("Modificar Datos");
 		lblRegistro.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRegistro.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblRegistro.setBounds(12, 13, 461, 43);
 		contentPane.add(lblRegistro);
 		
-		JLabel lblDebeDeAceptar = new JLabel("Debe de aceptar los t\u00E9rminos de uso y la pol\u00EDtica de privacidad");
-		lblDebeDeAceptar.setForeground(Color.RED);
-		lblDebeDeAceptar.setBounds(65, 422, 420, 22);
-		contentPane.add(lblDebeDeAceptar);
+//		JLabel lblDebeDeAceptar = new JLabel("Debe de aceptar los t\u00E9rminos de uso y la pol\u00EDtica de privacidad");
+//		lblDebeDeAceptar.setForeground(Color.RED);
+//		lblDebeDeAceptar.setBounds(65, 422, 420, 22);
+//		contentPane.add(lblDebeDeAceptar);
 		
 		JLabel lblMonedero = new JLabel("Tlf:");
 		lblMonedero.setBounds(257, 69, 70, 16);
@@ -149,7 +148,7 @@ public class frModificarDatos extends JFrame {
 		textField_6.setBounds(257, 226, 116, 22);
 		contentPane.add(textField_6);
 		
-		lblDebeDeAceptar.setVisible(false);
+//		lblDebeDeAceptar.setVisible(false);
 		
 		// Escuchadores de botones
 				bAceptar.addActionListener( new ActionListener() 
@@ -157,46 +156,48 @@ public class frModificarDatos extends JFrame {
 					
 					public void actionPerformed(ActionEvent e) 
 					{
-						try
-						{
-							String Nombre = textField.getText();
-							Nombre = Nombre.toUpperCase();
-							String Apellido = textField_1.getText();
-							Apellido = Apellido.toUpperCase();
-							String dni = textField_2.getText();
-							dni = dni.toUpperCase();
-							String Contrasea = textField_3.getText();
-							String tlf = textField_4.getText();
-							int telefono = Integer.parseInt(tlf);
-							String correo = textField_5.getText();
-							String aoNac = textField_6.getText();
-							int aoNacimiento = Integer.parseInt(aoNac);
-
-							if (rdbtnAceptoLosTrminos.isSelected())	
-							{
-								DAO.addUsuario(dni,Contrasea,Nombre,Apellido, aoNacimiento, correo, telefono);
-							
-								Usuario user = DAO.getUser(dni);
-				
-								frPrincipal ventana = new frPrincipal (user);
-								ventana.setVisible(true);
-								dispose();
-							}
-							else 
-							{
-								lblDebeDeAceptar.setVisible(true);
-							}
-							
-							
-						} 
-//						catch (clsUsuarioRepetido a)
+						
+						JOptionPane.showInputDialog(this, "Datos Cambiados!");
+//						try
 //						{
-//							errorUsuario(a);
+//							String Nombre = textField.getText();
+//							Nombre = Nombre.toUpperCase();
+//							String Apellido = textField_1.getText();
+//							Apellido = Apellido.toUpperCase();
+//							String dni = textField_2.getText();
+//							dni = dni.toUpperCase();
+//							String Contrasea = textField_3.getText();
+//							String tlf = textField_4.getText();
+//							int telefono = Integer.parseInt(tlf);
+//							String correo = textField_5.getText();
+//							String aoNac = textField_6.getText();
+//							int aoNacimiento = Integer.parseInt(aoNac);
+//
+//							if (rdbtnAceptoLosTrminos.isSelected())	
+//							{
+//								DAO.addUsuario(dni,Contrasea,Nombre,Apellido, aoNacimiento, correo, telefono);
+//							
+//								Usuario user = DAO.getUser(dni);
+//				
+//								frPrincipal ventana = new frPrincipal (user);
+//								ventana.setVisible(true);
+//								dispose();
+//							}
+//							else 
+//							{
+////								lblDebeDeAceptar.setVisible(true);
+//							}
+//							
+//							
+//						} 
+////						catch (clsUsuarioRepetido a)
+////						{
+////							errorUsuario(a);
+////						}
+//						catch (Exception b)
+//						{
+//							error(b);
 //						}
-						catch (Exception b)
-						{
-							error(b);
-						}
 					}
 				});
 				
@@ -205,13 +206,7 @@ public class frModificarDatos extends JFrame {
 					
 					public void actionPerformed(ActionEvent e) 
 					{
-						InicioSesion ventana = null;
-						try {
-							ventana = new InicioSesion ();
-						} catch (IOException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
+						frPrincipal ventana = new frPrincipal(user);
 						ventana.setVisible(true);
 						dispose();
 					}

@@ -28,6 +28,11 @@ public class Alquiler implements Serializable {
 		this.idSociedad= idSociedad;
 	}
 	
+	public Alquiler()
+	{
+		
+	}
+	
 	
 	public int getId() {
 		return id;

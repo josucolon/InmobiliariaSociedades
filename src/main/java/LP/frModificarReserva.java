@@ -10,13 +10,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import LN.Alquiler;
 import LN.Usuario;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class frReservar extends JFrame {
+public class frModificarReserva extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtFecha;
@@ -31,7 +32,7 @@ public class frReservar extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public frReservar(Usuario user) {
+	public frModificarReserva(Alquiler reserva, Usuario user) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 503, 553);
 		contentPane = new JPanel();
@@ -67,7 +68,7 @@ public class frReservar extends JFrame {
 		contentPane.add(txtPersonas);
 		txtPersonas.setColumns(10);
 		
-		JButton btnAnadirReserva = new JButton("Anadir Reserva");
+		JButton btnAnadirReserva = new JButton("Modificar Reserva");
 		btnAnadirReserva.setBounds(46, 427, 153, 29);
 		contentPane.add(btnAnadirReserva);
 		

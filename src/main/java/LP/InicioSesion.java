@@ -97,36 +97,46 @@ public class InicioSesion extends JFrame {
 		bRegistro.setBounds(173, 449, 132, 25);
 		contentPane.add(bRegistro);
 		
+		JButton bAnadirSociedad = new JButton("Anadir Sociedad");
+		bAnadirSociedad.setBounds(330, 449, 132, 25);
+		contentPane.add(bAnadirSociedad);
+		
 		JLabel lblElUsuarioO = new JLabel("El usuario o la contrasena son erroneos");
 		lblElUsuarioO.setVisible(false);
 		lblElUsuarioO.setForeground(new Color(204, 0, 0));
 		lblElUsuarioO.setBounds(118, 413, 258, 16);
 		contentPane.add(lblElUsuarioO);
+		
 	
 	btnIniciarSesin.addActionListener( new ActionListener() 
 	{
 			
 			public void actionPerformed(ActionEvent e) 
 			{
-				String usuario = txtUsuario.getText();
-				usuario = usuario.toUpperCase();
-				String contrasenya = String.valueOf(pwdPassword.getPassword());
-//				contrasenya = contrasenya.toUpperCase();
-				Usuario user = DAO.getUser(usuario);
-//				try 
+				
+				Usuario user = null;
+				frPrincipal ventana = new frPrincipal(user);
+				ventana.setVisible(true);
+				dispose();
+//				String usuario = txtUsuario.getText();
+//				usuario = usuario.toUpperCase();
+//				String contrasenya = String.valueOf(pwdPassword.getPassword());
+////				contrasenya = contrasenya.toUpperCase();
+//				Usuario user = DAO.getUser(usuario);
+////				try 
+////				{
+//				if (contrasenya.equals(user.getPassword()) )
 //				{
-				if (contrasenya.equals(user.getPassword()) )
-				{
-					frPrincipal ventana1 = new frPrincipal(user);
-					ventana1.setVisible(true);
-					dispose();
-				}
-				else
-				{
-					lblElUsuarioO.setVisible(true);
-					txtUsuario.setText("");
-					pwdPassword.setText("");
-				}
+//					frPrincipal ventana1 = new frPrincipal(user);
+//					ventana1.setVisible(true);
+//					dispose();
+//				}
+//				else
+//				{
+//					lblElUsuarioO.setVisible(true);
+//					txtUsuario.setText("");
+//					pwdPassword.setText("");
+//				}
 					
 				
 //				} 
@@ -144,6 +154,17 @@ public class InicioSesion extends JFrame {
 		public void actionPerformed(ActionEvent e) 
 		{
 			Registro ventana = new Registro();
+			ventana.setVisible(true);
+			dispose();
+		}
+	});
+	
+	bAnadirSociedad.addActionListener( new ActionListener()
+	{
+		
+		public void actionPerformed(ActionEvent e) 
+		{
+			frAnadirSociedad ventana = new frAnadirSociedad();
 			ventana.setVisible(true);
 			dispose();
 		}

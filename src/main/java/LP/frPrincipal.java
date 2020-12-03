@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -48,6 +49,10 @@ public class frPrincipal extends JFrame {
 		btnModDatos.setBounds(117, 155, 166, 29);
 		contentPane.add(btnModDatos);
 		
+		JButton btnVolver = new JButton("Salir");
+		btnVolver.setBounds(117, 200, 166, 29);
+		contentPane.add(btnVolver);
+		
 		btnReserva.addActionListener( new ActionListener() 
 		{
 				
@@ -65,7 +70,7 @@ public class frPrincipal extends JFrame {
 				
 			public void actionPerformed(ActionEvent e) 
 			{
-				frReservar ventana = new frReservar (user);
+				frListaReservas ventana = new frListaReservas (user);
 				ventana.setVisible(true);
 				dispose();
 			}
@@ -78,6 +83,24 @@ public class frPrincipal extends JFrame {
 			public void actionPerformed(ActionEvent e) 
 			{
 				frModificarDatos ventana = new frModificarDatos (user);
+				ventana.setVisible(true);
+				dispose();
+			}
+	
+		});
+		
+		btnVolver.addActionListener( new ActionListener() 
+		{
+				
+			public void actionPerformed(ActionEvent e) 
+			{
+				InicioSesion ventana = null;
+				try {
+					ventana = new InicioSesion ();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				ventana.setVisible(true);
 				dispose();
 			}
