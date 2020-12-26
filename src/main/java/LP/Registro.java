@@ -162,7 +162,7 @@ public class Registro extends JFrame {
 //						System.out.println("prueba");
 						try
 						{
-							System.out.println("prueba2");
+							
 							String Nombre = textField.getText();
 //							System.out.println(Nombre);
 							Nombre = Nombre.toUpperCase();
@@ -199,7 +199,6 @@ public class Registro extends JFrame {
 							if (rdbtnAceptoLosTrminos.isSelected())	
 							{
 								boolean a = DAO.addUsuario(dni,Contrasea,Nombre,Apellido, aoNacimiento, correo, telefono);
-								System.out.println(a);
 								Usuario user = DAO.getUser(dni);
 				
 								frPrincipal ventana = new frPrincipal (user);
@@ -213,10 +212,10 @@ public class Registro extends JFrame {
 							
 							
 						} 
-//						catch (clsUsuarioRepetido a)
-//						{
-//							errorUsuario(a);
-//						}
+						catch (clsUsuarioRepetido a)
+						{
+							errorUsuario(a);
+						}
 						catch (Exception b)
 						{
 							error(b);

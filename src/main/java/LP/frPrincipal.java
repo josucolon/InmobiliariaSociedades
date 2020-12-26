@@ -22,7 +22,6 @@ public class frPrincipal extends JFrame {
 	 * Launch the application.
 	 */
 
-
 	/**
 	 * Create the frame.
 	 */

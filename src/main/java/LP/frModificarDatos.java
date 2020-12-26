@@ -40,16 +40,15 @@ import javax.swing.JComboBox;
 public class frModificarDatos extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField textNombre;
+	private JTextField textCorreo;
+	private JTextField textApellido;
+	private JTextField textContrasenya;
+	private JTextField textAnyoN;
+	private JTextField texttlf;
 	
 	private Logger logger = Logger.getLogger(this.getClass().getName());
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-
+	
 
 	/**
 	 * Create the frame.
@@ -67,47 +66,20 @@ public class frModificarDatos extends JFrame {
 		lblNombre.setBounds(43, 69, 116, 16);
 		contentPane.add(lblNombre);
 		
-		textField = new JTextField();
-		textField.setBounds(43, 98, 116, 22);
-		contentPane.add(textField);
-		textField.setColumns(10);
-		
 		JLabel lblApellido = new JLabel("Apellido:");
 		lblApellido.setBounds(43, 133, 116, 16);
 		contentPane.add(lblApellido);
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(43, 162, 116, 22);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
-		
-		
-		
-//		textField_2 = new JTextField();
-//		textField_2.setBounds(43, 226, 116, 22);
-//		contentPane.add(textField_2);
-//		textField_2.setColumns(10);
 		
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
 		lblContrasea.setBounds(43, 197, 116, 16);
 		contentPane.add(lblContrasea);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(43, 221, 116, 22);
-		contentPane.add(textField_3);
-		textField_3.setColumns(10);
-		
 		JButton bVolver = new JButton("Volver");
 		bVolver.setBounds(12, 456, 98, 25);
 		contentPane.add(bVolver);
 		
-//		JRadioButton rdbtnAceptoLosTrminos = new JRadioButton("Acepto los t\u00E9rminos de uso de pol\u00EDtica y privacidad de la plataforma");
-//		rdbtnAceptoLosTrminos.setBackground(Color.LIGHT_GRAY);
-//		rdbtnAceptoLosTrminos.setBounds(43, 375, 420, 53);
-//		contentPane.add(rdbtnAceptoLosTrminos);
-		
 		JButton bAceptar = new JButton("Modificar");
-		bAceptar.setBounds(256, 282, 152, 43);
+		bAceptar.setBounds(161, 316, 152, 43);
 		contentPane.add(bAceptar);
 		
 		JLabel lblRegistro = new JLabel("Modificar Datos");
@@ -115,11 +87,6 @@ public class frModificarDatos extends JFrame {
 		lblRegistro.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		lblRegistro.setBounds(12, 13, 461, 43);
 		contentPane.add(lblRegistro);
-		
-//		JLabel lblDebeDeAceptar = new JLabel("Debe de aceptar los t\u00E9rminos de uso y la pol\u00EDtica de privacidad");
-//		lblDebeDeAceptar.setForeground(Color.RED);
-//		lblDebeDeAceptar.setBounds(65, 422, 420, 22);
-//		contentPane.add(lblDebeDeAceptar);
 		
 		JLabel lblMonedero = new JLabel("Tlf:");
 		lblMonedero.setBounds(257, 69, 70, 16);
@@ -129,26 +96,41 @@ public class frModificarDatos extends JFrame {
 		lblEmail.setBounds(257, 133, 56, 16);
 		contentPane.add(lblEmail);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(257, 162, 116, 22);
-		contentPane.add(textField_4);
-		textField_4.setColumns(10);
-		
-		textField_5 = new JTextField();
-		textField_5.setBounds(257, 101, 116, 22);
-		contentPane.add(textField_5);
-		textField_5.setColumns(10);
-		
 		JLabel lblAoDeNacimiento = new JLabel("A\u00F1o de Nacimiento:");
 		lblAoDeNacimiento.setBounds(256, 197, 152, 16);
 		contentPane.add(lblAoDeNacimiento);
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(257, 226, 116, 22);
-		contentPane.add(textField_6);
+		textNombre = new JTextField();
+		textNombre.setBounds(43, 98, 116, 22);
+		contentPane.add(textNombre);
+		textNombre.setColumns(10);
 		
-//		lblDebeDeAceptar.setVisible(false);
+		textCorreo = new JTextField();
+		textCorreo.setText("");
+		textCorreo.setBounds(256, 162, 116, 22);
+		contentPane.add(textCorreo);
+		textCorreo.setColumns(10);
+		
+		textApellido = new JTextField();
+		textApellido.setBounds(43, 162, 116, 22);
+		contentPane.add(textApellido);
+		textApellido.setColumns(10);
+		
+		textContrasenya = new JTextField();
+		textContrasenya.setBounds(43, 226, 116, 22);
+		contentPane.add(textContrasenya);
+		textContrasenya.setColumns(10);
+		
+		textAnyoN = new JTextField();
+		textAnyoN.setBounds(256, 226, 116, 22);
+		contentPane.add(textAnyoN);
+		textAnyoN.setColumns(10);
+		
+		texttlf = new JTextField();
+		texttlf.setBounds(256, 98, 116, 22);
+		contentPane.add(texttlf);
+		texttlf.setColumns(10);
+		
 		
 		// Escuchadores de botones
 				bAceptar.addActionListener( new ActionListener() 
@@ -157,47 +139,50 @@ public class frModificarDatos extends JFrame {
 					public void actionPerformed(ActionEvent e) 
 					{
 						
+						try
+						{
+							String Nombre = textNombre.getText();
+							Nombre = Nombre.toUpperCase();
+							String Apellido = textApellido.getText();
+							Apellido = Apellido.toUpperCase();							
+							String Contrasenya = textContrasenya.getText();
+							String tlf = texttlf.getText();
+							int telefono = 0;
+							try
+							{
+								 telefono = Integer.parseInt(tlf);
+							}catch (NumberFormatException e1)
+							{
+								System.out.println(tlf + " no es un numero");
+							}
+							
+							String correo = textCorreo.getText();
+							String aoNac = textAnyoN.getText();
+							int aoNacimiento = Integer.parseInt(aoNac);
+
+							if (Nombre != null || Apellido != null || Contrasenya !=null || telefono !=0 || aoNacimiento != 0 || correo != null)	
+							{
+								DAO.modificarUsuario(user.getDni(), Contrasenya, Nombre, Apellido, aoNacimiento, correo, telefono);
+							
+								
+				
+								frPrincipal ventana = new frPrincipal (user);
+								ventana.setVisible(true);
+								dispose();
+							}
+							
+						} 
+						catch (clsUsuarioRepetido a)
+						{
+							errorUsuario(a);
+						}
+						catch (Exception b)
+						{
+							error(b);
+						}
+						
+						
 						JOptionPane.showInputDialog(this, "Datos Cambiados!");
-//						try
-//						{
-//							String Nombre = textField.getText();
-//							Nombre = Nombre.toUpperCase();
-//							String Apellido = textField_1.getText();
-//							Apellido = Apellido.toUpperCase();
-//							String dni = textField_2.getText();
-//							dni = dni.toUpperCase();
-//							String Contrasea = textField_3.getText();
-//							String tlf = textField_4.getText();
-//							int telefono = Integer.parseInt(tlf);
-//							String correo = textField_5.getText();
-//							String aoNac = textField_6.getText();
-//							int aoNacimiento = Integer.parseInt(aoNac);
-//
-//							if (rdbtnAceptoLosTrminos.isSelected())	
-//							{
-//								DAO.addUsuario(dni,Contrasea,Nombre,Apellido, aoNacimiento, correo, telefono);
-//							
-//								Usuario user = DAO.getUser(dni);
-//				
-//								frPrincipal ventana = new frPrincipal (user);
-//								ventana.setVisible(true);
-//								dispose();
-//							}
-//							else 
-//							{
-////								lblDebeDeAceptar.setVisible(true);
-//							}
-//							
-//							
-//						} 
-////						catch (clsUsuarioRepetido a)
-////						{
-////							errorUsuario(a);
-////						}
-//						catch (Exception b)
-//						{
-//							error(b);
-//						}
 					}
 				});
 				

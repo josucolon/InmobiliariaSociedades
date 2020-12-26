@@ -5,13 +5,21 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import DAO.DAO;
+import LN.Alquiler;
+import LN.Sociedad;
 import LN.Usuario;
+
+import javax.swing.DefaultListModel;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -19,13 +27,11 @@ import javax.swing.JButton;
 public class frReservar extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtFecha;
-	private JTextField txtHora;
-	private JTextField txtPersonas;
-
-	/**
-	 * Launch the application.
-	 */
+	private JTextField textMes;
+	private JTextField textAnyo;
+	ArrayList<Sociedad> Lista = new ArrayList<Sociedad> ();
+	private DefaultListModel mdl = new DefaultListModel();
+	private JTextField textID;
 
 
 	/**
@@ -40,30 +46,22 @@ public class frReservar extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblHora = new JLabel("Hora");
-		lblHora.setBounds(238, 224, 69, 20);
-		contentPane.add(lblHora);
 		
-		JLabel lblFecha = new JLabel("Fecha");
-		lblFecha.setBounds(15, 224, 69, 20);
-		contentPane.add(lblFecha);
+		JLabel lblDia = new JLabel("Dia");
+		lblDia.setBounds(15, 224, 69, 20);
+		contentPane.add(lblDia);
+		
+		JTextField txtDia = new JTextField();
+		txtDia.setBounds(15, 260, 43, 26);
+		contentPane.add(txtDia);
+		txtDia.setColumns(10);
 		
 		JLabel lblPersonas = new JLabel("Personas");
-		lblPersonas.setBounds(171, 322, 69, 20);
+		lblPersonas.setBounds(15, 299, 69, 20);
 		contentPane.add(lblPersonas);
 		
-		txtFecha = new JTextField();
-		txtFecha.setBounds(15, 260, 146, 26);
-		contentPane.add(txtFecha);
-		txtFecha.setColumns(10);
-		
-		txtHora = new JTextField();
-		txtHora.setBounds(237, 260, 146, 26);
-		contentPane.add(txtHora);
-		txtHora.setColumns(10);
-		
-		txtPersonas = new JTextField();
-		txtPersonas.setBounds(161, 358, 146, 26);
+		JTextField txtPersonas = new JTextField();
+		txtPersonas.setBounds(15, 332, 146, 26);
 		contentPane.add(txtPersonas);
 		txtPersonas.setColumns(10);
 		
@@ -75,11 +73,119 @@ public class frReservar extends JFrame {
 		btnVolver.setBounds(268, 427, 115, 29);
 		contentPane.add(btnVolver);
 		
+		JLabel lblMes = new JLabel("Mes");
+		lblMes.setBounds(83, 226, 56, 16);
+		contentPane.add(lblMes);
+		
+		textMes = new JTextField();
+		textMes.setBounds(80, 260, 43, 26);
+		contentPane.add(textMes);
+		textMes.setColumns(10);
+		
+		JLabel lblNewAnyo = new JLabel("A\u00F1o");
+		lblNewAnyo.setBounds(143, 226, 56, 16);
+		contentPane.add(lblNewAnyo);
+		
+		textAnyo = new JTextField();
+		textAnyo.setBounds(143, 260, 53, 26);
+		contentPane.add(textAnyo);
+		textAnyo.setColumns(10);
+		
+		JComboBox comboBoxHora = new JComboBox();
+		comboBoxHora.setBounds(243, 262, 90, 22);
+		contentPane.add(comboBoxHora);
+		comboBoxHora.addItem("13:00");
+		comboBoxHora.addItem("14:00");
+		comboBoxHora.addItem("21:00");
+		comboBoxHora.addItem("22:00");
+		
+		JList listSociedades = new JList();
+		listSociedades.setBounds(12, 13, 461, 194);
+		contentPane.add(listSociedades);
+
+		Lista = DAO.LeerSociedades();
+		
+		for (int i=0; i < Lista.size(); i++)
+		{
+			mdl.addElement(Lista.get(i).getNombre() + Lista.get(i).getId());
+		}
+		
+		listSociedades.setModel(mdl);
+		
+		JLabel lblIdSociedad = new JLabel("ID Sociedad");
+		lblIdSociedad.setBounds(360, 226, 75, 16);
+		contentPane.add(lblIdSociedad);
+		
+		textID = new JTextField();
+		textID.setBounds(357, 262, 84, 22);
+		contentPane.add(textID);
+		textID.setColumns(10);
+		
+		JLabel lblerror = new JLabel("Porfavor, rellene todos los datos para continuar.");
+		lblerror.setEnabled(false);
+		lblerror.setForeground(Color.RED);
+		lblerror.setBounds(15, 390, 447, 20);
+		contentPane.add(lblerror);
+		
 		btnAnadirReserva.addActionListener( new ActionListener()
 		{
 			
 			public void actionPerformed(ActionEvent e) 
 			{
+				String diaS = txtDia.getText();
+				int dia = Integer.parseInt(diaS);
+				String mesS = textMes.getText();
+				int mes = Integer.parseInt(mesS);
+				String anyoS = textAnyo.getText();
+				int anyo = Integer.parseInt(anyoS);
+				String personas = txtPersonas.getText();
+				int pers = Integer.parseInt(personas);
+				int item = comboBoxHora.getSelectedIndex();
+				int hora = 0;
+				String IDs = textID.getText();
+				int IDS = Integer.parseInt(IDs);
+				
+				
+				ArrayList<Alquiler> reser = new ArrayList <Alquiler> ();
+				reser= DAO.LeerAlquiler();
+				int id =0;
+				for(int i=0; i<reser.size(); i++)
+				{
+					 id=reser.get(i).getId() ;
+				}
+				
+				
+				switch (item)
+				{
+				case 0: 
+					hora=1;
+					break;
+					
+				case 1:
+					hora=2;
+					break;
+					
+				case 2: 
+					hora=9;
+					break;
+					
+				case 3: 
+					hora=10;
+					break;
+					
+				case -1:
+					hora =0;
+					
+				}
+				
+				if (dia != 0 || mes != 0 || anyo!=0 || pers != 0 || hora != 0)
+				{
+					DAO.addAlquiler(id, hora, dia, mes, anyo, user.getDni(), IDS);
+				}else
+				{
+					lblerror.setVisible(true);
+				}
+				
 				JOptionPane.showInputDialog(this, "Reserva realizada!");
 			}
 		});

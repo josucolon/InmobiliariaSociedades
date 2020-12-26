@@ -5,19 +5,31 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import DAO.DAO;
 import LN.Alquiler;
 import LN.Usuario;
+
 import javax.swing.JButton;
+import javax.swing.JTextField;
 
 public class frListaReservas extends JFrame {
 
 	private JPanel contentPane;
+	ArrayList<Alquiler> Lista = new ArrayList<Alquiler> ();
+	private DefaultListModel mdl = new DefaultListModel();
+	private JTextField textId;
+	private int id;
+	private String idS;
 
 	/**
 	 * Create the frame.
@@ -43,13 +55,59 @@ public class frListaReservas extends JFrame {
 		btnVolver.setBounds(194, 393, 115, 29);
 		contentPane.add(btnVolver);
 		
+		JList listReservas = new JList();
+		listReservas.setBounds(12, 30, 461, 196);
+		contentPane.add(listReservas);
+		
+		Lista = DAO.LeerAlquiler();
+		
+		for (int i=0; i < Lista.size(); i++)
+		{
+			mdl.addElement(Lista.get(i).getId());
+		}
+		
+		listReservas.setModel(mdl);
+		
+		JLabel lblReservas = new JLabel("Reservas");
+		lblReservas.setBounds(12, 13, 56, 16);
+		contentPane.add(lblReservas);
+		
+		JLabel lblId = new JLabel("Id");
+		lblId.setBounds(12, 252, 56, 16);
+		contentPane.add(lblId);
+		
+		textId = new JTextField();
+		textId.setBounds(12, 275, 116, 22);
+		contentPane.add(textId);
+		textId.setColumns(10);
+		
+		JLabel lblerror = new JLabel("Porfavor, introduzca el id de la reserva.");
+		lblerror.setForeground(Color.RED);
+		lblerror.setEnabled(false);
+		lblerror.setBounds(12, 300, 436, 16);
+		contentPane.add(lblerror);
+		
+		
 		btnModificarReserva.addActionListener( new ActionListener()
 		{
 			
 			public void actionPerformed(ActionEvent e) 
 			{
-				Alquiler reserva = null;
-				frModificarReserva ventana = new frModificarReserva(reserva , user);
+				
+				idS = textId.getText();
+				id = Integer.parseInt(idS);
+				Alquiler reserva = null; 
+				
+				for (int i=0; i < Lista.size(); i++)
+				{
+					if(Lista.get(i).getId()==id)
+					{
+						reserva = Lista.get(i);
+					}
+					
+				}
+			
+				frModificarReserva ventana = new frModificarReserva( reserva , user);
 				ventana.setVisible(true);
 				dispose();
 			}
@@ -60,7 +118,16 @@ public class frListaReservas extends JFrame {
 			
 			public void actionPerformed(ActionEvent e) 
 			{
+				if (id == 0)
+				{
+					lblerror.setVisible(true);
+				}else 
+				{
+				DAO.eliminarAlquiler(id);
+				
 				JOptionPane.showInputDialog(this, "Reserva eliminada!");
+				}
+				
 			}
 		});
 		
@@ -75,5 +142,4 @@ public class frListaReservas extends JFrame {
 			}
 		});
 	}
-
 }

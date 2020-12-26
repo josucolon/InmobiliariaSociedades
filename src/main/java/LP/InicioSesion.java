@@ -88,10 +88,6 @@ public class InicioSesion extends JFrame {
 		lblPassword.setBounds(173, 300, 113, 16);
 		contentPane.add(lblPassword);
 		
-		//JLabel lblNewLabel = new JLabel("New label");
-//		lblNewLabel.setIcon(new ImageIcon(InicioSesion.class.getResource("/images/logo.png")));
-//		lblNewLabel.setBounds(137, 28, 217, 130);
-//		contentPane.add(lblNewLabel);
 		
 		JButton bRegistro = new JButton("Registrarse");
 		bRegistro.setBounds(173, 449, 132, 25);
@@ -107,6 +103,11 @@ public class InicioSesion extends JFrame {
 		lblElUsuarioO.setBounds(118, 413, 258, 16);
 		contentPane.add(lblElUsuarioO);
 		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon(InicioSesion.class.getResource("/images/logo.png")));
+		lblNewLabel.setBounds(137, 28, 217, 130);
+		contentPane.add(lblNewLabel);
+		
 	
 	btnIniciarSesin.addActionListener( new ActionListener() 
 	{
@@ -114,36 +115,36 @@ public class InicioSesion extends JFrame {
 			public void actionPerformed(ActionEvent e) 
 			{
 				
-				Usuario user = null;
-				frPrincipal ventana = new frPrincipal(user);
-				ventana.setVisible(true);
-				dispose();
-//				String usuario = txtUsuario.getText();
-//				usuario = usuario.toUpperCase();
-//				String contrasenya = String.valueOf(pwdPassword.getPassword());
-////				contrasenya = contrasenya.toUpperCase();
-//				Usuario user = DAO.getUser(usuario);
-////				try 
-////				{
-//				if (contrasenya.equals(user.getPassword()) )
-//				{
-//					frPrincipal ventana1 = new frPrincipal(user);
-//					ventana1.setVisible(true);
-//					dispose();
-//				}
-//				else
-//				{
-//					lblElUsuarioO.setVisible(true);
-//					txtUsuario.setText("");
-//					pwdPassword.setText("");
-//				}
+//				Usuario user = null;
+//				frPrincipal ventana = new frPrincipal(user);
+//				ventana.setVisible(true);
+//				dispose();
+				String usuario = txtUsuario.getText();
+				usuario = usuario.toUpperCase();
+				String contrasenya = String.valueOf(pwdPassword.getPassword());
+				contrasenya = contrasenya.toUpperCase();
+				Usuario user = DAO.getUser(usuario);
+				try 
+				{
+				if (contrasenya.equals(user.getPassword()) )
+				{
+					frPrincipal ventana1 = new frPrincipal(user);
+					ventana1.setVisible(true);
+					dispose();
+				}
+				else
+				{
+					lblElUsuarioO.setVisible(true);
+					txtUsuario.setText("");
+					pwdPassword.setText("");
+				}
 					
 				
-//				} 
-//				catch (ClassNotFoundException e1) 
-//				{
-//					e1.printStackTrace();
-//				}
+				} 
+				catch (ClassNotFoundException e1) 
+				{
+					e1.printStackTrace();
+				}
 			}
 			
 	});
