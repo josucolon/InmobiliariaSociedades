@@ -7,7 +7,11 @@ import javax.jdo.annotations.Element;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
 
-
+/**
+ * Esta es la clase Sociedad. Los usuarios realizan reservas en sociedades.
+ * @author GrupoAmuntValencia
+ *
+ */
 @PersistenceCapable
 public class Sociedad implements Serializable {
 
@@ -21,6 +25,13 @@ public class Sociedad implements Serializable {
 	@Element(column="FK_SOCIEDAD")
 	ArrayList <Alquiler> alquileres= new ArrayList<Alquiler>();
 	
+	/**
+	 * Contructor de la clase Sociedad.
+	 * @param id
+	 * @param nombre
+	 * @param capacidadMax
+	 * @param direccion
+	 */
 	public Sociedad(int id, String nombre, int capacidadMax, String direccion)
 	{
 		this.id= id;

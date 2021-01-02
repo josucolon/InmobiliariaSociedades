@@ -36,6 +36,11 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 
+/**
+ * Esta es la ventana de registro.
+ * @author GrupoAmuntValencia
+ *
+ */
 public class Registro extends JFrame {
 
 	private JPanel contentPane;
@@ -151,6 +156,9 @@ public class Registro extends JFrame {
 		
 		lblDebeDeAceptar.setVisible(false);
 		
+		/**
+		 * Funcionalidad del boton aceptar. Se realizan las acciones para recoger los datos de los nuevos usuarios y añadirlos a la base de datos. 
+		 */
 		// Escuchadores de botones
 				bAceptar.addActionListener( new ActionListener() 
 				{
@@ -212,10 +220,6 @@ public class Registro extends JFrame {
 							
 							
 						} 
-						catch (clsUsuarioRepetido a)
-						{
-							errorUsuario(a);
-						}
 						catch (Exception b)
 						{
 							error(b);
@@ -223,6 +227,9 @@ public class Registro extends JFrame {
 					}
 				});
 				
+				/**
+				 * Funcionalidad del boton Volver. Lo que se hace es volver a la ventana anterior, en este caso a la de inicio de sesion. 
+				 */
 				bVolver.addActionListener( new ActionListener() 
 				{
 					

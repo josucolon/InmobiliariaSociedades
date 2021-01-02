@@ -21,7 +21,11 @@ import LN.Usuario;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
-
+/**
+ * Esta es la ventana donde se muestran las reservas que tiene el usuario. 
+ * @author GrupoAmuntValencia
+ *
+ */
 public class frListaReservas extends JFrame {
 
 	private JPanel contentPane;
@@ -59,7 +63,7 @@ public class frListaReservas extends JFrame {
 		listReservas.setBounds(12, 30, 461, 196);
 		contentPane.add(listReservas);
 		
-		Lista = DAO.LeerAlquiler();
+		Lista = DAO.LeerAlquiler(user.getDni());
 		
 		for (int i=0; i < Lista.size(); i++)
 		{
@@ -87,7 +91,9 @@ public class frListaReservas extends JFrame {
 		lblerror.setBounds(12, 300, 436, 16);
 		contentPane.add(lblerror);
 		
-		
+		/**
+		 * Funcionalidad del boton modificar la reserva. Se recogen los datos de la reserva que se quiere modificar y se pasan a la siguiente ventana, la de modificar la reserva.
+		 */
 		btnModificarReserva.addActionListener( new ActionListener()
 		{
 			
@@ -113,11 +119,17 @@ public class frListaReservas extends JFrame {
 			}
 		});
 		
+		/**
+		 * Funcionalidad del boton eliminar la reserva. Recoge el id de la reserva que se quiere eliminar y se llama al metodo que borra la reserva de la BD.
+		 */
 		btnEliminarReserva.addActionListener( new ActionListener()
 		{
 			
 			public void actionPerformed(ActionEvent e) 
 			{
+				idS = textId.getText();
+				id = Integer.parseInt(idS);
+				
 				if (id == 0)
 				{
 					lblerror.setVisible(true);
@@ -131,6 +143,9 @@ public class frListaReservas extends JFrame {
 			}
 		});
 		
+		/**
+		 * Funcionalidad del boton Volver. Lo que se hace es volver a la ventana anterior, en este caso a la del menu principal.
+		 */
 		btnVolver.addActionListener( new ActionListener()
 		{
 			

@@ -7,7 +7,11 @@ import javax.jdo.annotations.Element;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
 
-
+/**
+ * Esta es la clase de Usuario. 
+ * @author GrupoAmuntValencia
+ *
+ */
 @PersistenceCapable
 public class Usuario implements Serializable {
 	
@@ -23,6 +27,16 @@ public class Usuario implements Serializable {
 	@Element(column="FK_USUARIO")
 	ArrayList <Alquiler> alquileres= new ArrayList<Alquiler>();
 	
+	/**
+	 * Contructor de la clase.
+	 * @param dni
+	 * @param password
+	 * @param nombre
+	 * @param apellido
+	 * @param anoNac
+	 * @param correo
+	 * @param tlf
+	 */
 	public Usuario(String dni, String password, String nombre, String apellido, int anoNac, String correo, int tlf)
 	{
 		this.dni= dni;
@@ -34,6 +48,9 @@ public class Usuario implements Serializable {
 		this.tlf= tlf;
 	}
 
+	/**
+	 * Contructor vacio.
+	 */
 	public Usuario() {
 		// TODO Auto-generated constructor stub
 	}

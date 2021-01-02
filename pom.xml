@@ -9,6 +9,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.6</maven.compiler.source>
 		<maven.compiler.target>1.6</maven.compiler.target>
+		<doxygen.config.file>${basedir}/src/main/resources/Doxyfile</doxygen.config.file>
   	</properties>
 
   <dependencies>
@@ -126,6 +127,40 @@
         </resource>
     </resources>
       <plugins>
+      	
+      	<plugin>
+          <groupId>com.soebes.maven.plugins</groupId>
+          <artifactId>doxygen-maven-plugin</artifactId>
+          <version>1.1.0</version>
+          <configuration>
+          <configurationFile>${doxygen.config.file}</configurationFile>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.1.0</version>
+          <executions>
+            <execution>
+              <id>copy-resources</id>
+              <!-- here the phase you need -->
+              <phase>validate</phase>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <configuration>
+                <outputDirectory>${basedir}/docs</outputDirectory>
+                  <resources>
+                    <resource>
+                    <directory>${basedir}/${basedir}/target/doxygen/html</directory>
+                    <filtering>true</filtering>
+                    </resource>
+                  </resources>
+              </configuration>
+            </execution>
+          </executions>
+         </plugin>
+      
       	<plugin>
                 <artifactId>maven-clean-plugin</artifactId>
 				<version>3.0.0</version>
@@ -279,4 +314,22 @@
     </profile>
 
 </profiles>
+
+<reporting>
+	<plugins>
+	  <plugin>
+	    <groupId>org.apache.maven.plugins</groupId>
+	    <artifactId>maven-javadoc-plugin</artifactId>
+	    <version>3.0.0</version>
+	    	<configuration>
+	    	  <show>private</show>
+	    	  <nohelp>true</nohelp>
+	    	</configuration>
+	  </plugin>
+	</plugins>
+
+
+
+
+</reporting>
 </project>

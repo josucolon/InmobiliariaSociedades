@@ -21,6 +21,11 @@ import javax.swing.JOptionPane;
 import DAO.DAO;
 import LN.Sociedad;
 
+/**
+ * Esta es la ventana para añadir una sociedad nueva.
+ * @author GrupoAmuntValencia
+ *
+ */
 public class frAnadirSociedad extends JFrame {
 
 	private JPanel contentPane;
@@ -80,7 +85,7 @@ public class frAnadirSociedad extends JFrame {
 		textDir.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon(InicioSesion.class.getResource("/images/logo.png")));
+		//lblNewLabel.setIcon(new ImageIcon(InicioSesion.class.getResource("/images/logo.png")));
 		lblNewLabel.setBounds(137, 28, 217, 130);
 		contentPane.add(lblNewLabel);
 		
@@ -90,6 +95,10 @@ public class frAnadirSociedad extends JFrame {
 		lblerror.setBounds(12, 424, 461, 16);
 		contentPane.add(lblerror);
 		
+		
+		/**
+		 * Funcionalidad del boton Volver. Lo que se hace es volver a la ventana anterior, en este caso a la de inicio de sesion.
+		 */
 		btnVolver.addActionListener( new ActionListener()
 		{
 			
@@ -107,6 +116,9 @@ public class frAnadirSociedad extends JFrame {
 			}
 		});
 		
+		/**
+		 * Funcionalidad del boton Añadir sociedad. Lo que realiza es recoger los datos de la nueva sociedad y guardarlos en la base de datos.
+		 */
 		btnAna.addActionListener( new ActionListener()
 		{
 			

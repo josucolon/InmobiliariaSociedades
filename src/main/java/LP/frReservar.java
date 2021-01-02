@@ -24,6 +24,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+/**
+ * Esta es la ventana de Reserva.
+ * @author GrupoAmuntValencia
+ *
+ */
 public class frReservar extends JFrame {
 
 	private JPanel contentPane;
@@ -127,6 +132,9 @@ public class frReservar extends JFrame {
 		lblerror.setBounds(15, 390, 447, 20);
 		contentPane.add(lblerror);
 		
+		/**
+		 * Funcionalidad del boton añadir una reserva. Recoge los datos introducidos por el usuario y los guarda en la base de datos en forma de reserva.
+		 */
 		btnAnadirReserva.addActionListener( new ActionListener()
 		{
 			
@@ -147,7 +155,7 @@ public class frReservar extends JFrame {
 				
 				
 				ArrayList<Alquiler> reser = new ArrayList <Alquiler> ();
-				reser= DAO.LeerAlquiler();
+				reser= DAO.LeerAlquiler(user.getDni());
 				int id =0;
 				for(int i=0; i<reser.size(); i++)
 				{
@@ -190,6 +198,9 @@ public class frReservar extends JFrame {
 			}
 		});
 		
+		/**
+		 * Funcionalidad del boton Volver. Lo que se hace es volver a la ventana anterior, en este caso a la del menu principal.
+		 */
 		btnVolver.addActionListener( new ActionListener()
 		{
 			

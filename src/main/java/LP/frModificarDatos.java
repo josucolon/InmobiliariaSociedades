@@ -37,6 +37,11 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 
+/**
+ * Esta es la ventana para modificar los datos del usuario.
+ * @author GrupoAmuntValencia
+ *
+ */
 public class frModificarDatos extends JFrame {
 
 	private JPanel contentPane;
@@ -133,6 +138,9 @@ public class frModificarDatos extends JFrame {
 		
 		
 		// Escuchadores de botones
+		/**
+		 * Funcionalidad del boton de aceptar los cambios. Se recogen los nuevos datos del usuario y se modifican en la BD.
+		 */
 				bAceptar.addActionListener( new ActionListener() 
 				{
 					
@@ -172,10 +180,6 @@ public class frModificarDatos extends JFrame {
 							}
 							
 						} 
-						catch (clsUsuarioRepetido a)
-						{
-							errorUsuario(a);
-						}
 						catch (Exception b)
 						{
 							error(b);
@@ -186,6 +190,9 @@ public class frModificarDatos extends JFrame {
 					}
 				});
 				
+				/**
+				 * Funcionalidad del boton Volver. Lo que se hace es volver a la ventana anterior, en este caso a la del menu principal.
+				 */
 				bVolver.addActionListener( new ActionListener() 
 				{
 					

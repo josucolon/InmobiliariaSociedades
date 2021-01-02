@@ -3,7 +3,11 @@ package LN;
 import java.io.Serializable;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
-
+/**
+ * Esta clase es la de Alquiler. La clase que simboliza la reserva que podran realizar los usuarios en la aplicacion.
+ * @author GrupoAmuntValencia
+ *
+ */
 
 @PersistenceCapable
 public class Alquiler implements Serializable {
@@ -17,6 +21,16 @@ public class Alquiler implements Serializable {
 	private String dniUsuario;
 	private int idSociedad;
 	
+	/**
+	 * Contructor de la clase Alquiler.
+	 * @param id
+	 * @param hora
+	 * @param dia
+	 * @param mes
+	 * @param anyo
+	 * @param dniUsuario
+	 * @param idSociedad
+	 */
 	public Alquiler(int id, int hora, int dia, int mes, int anyo, String dniUsuario, int idSociedad)
 	{
 		this.id= id;
@@ -28,6 +42,9 @@ public class Alquiler implements Serializable {
 		this.idSociedad= idSociedad;
 	}
 	
+	/**
+	 * Contructor vacio.
+	 */
 	public Alquiler()
 	{
 		

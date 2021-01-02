@@ -24,6 +24,12 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.IOException;
 
+
+/**
+ * Clase inicial del proyecto. La ejecucion se inicia en esta clase. Desde esta ventana se podran acceder a diferentes ventanas de la aplicacion. 
+ * @author GrupoAmuntValencia
+ *
+ */
 public class InicioSesion extends JFrame {
 
 	private JPanel contentPane;
@@ -31,7 +37,9 @@ public class InicioSesion extends JFrame {
 	private JPasswordField pwdPassword;
 
 	/**
-	 * Launch the application.
+	 * Main de la ejecucion. Además, inicializa la ventana de InicioSesion
+	 * @param Son los parametros del main
+	 * @return no devuelve nada
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -104,11 +112,13 @@ public class InicioSesion extends JFrame {
 		contentPane.add(lblElUsuarioO);
 		
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon(InicioSesion.class.getResource("/images/logo.png")));
+		//lblNewLabel.setIcon(new ImageIcon(InicioSesion.class.getResource("/images/logo.png")));
 		lblNewLabel.setBounds(137, 28, 217, 130);
 		contentPane.add(lblNewLabel);
 		
-	
+	/**
+	 * Funcionalidad del boton de inicio de sesion, donde se recogen los datos del usuario y se verifica que este dado de alta en la base de datos.
+	 */
 	btnIniciarSesin.addActionListener( new ActionListener() 
 	{
 			
@@ -124,8 +134,6 @@ public class InicioSesion extends JFrame {
 				String contrasenya = String.valueOf(pwdPassword.getPassword());
 				contrasenya = contrasenya.toUpperCase();
 				Usuario user = DAO.getUser(usuario);
-				try 
-				{
 				if (contrasenya.equals(user.getPassword()) )
 				{
 					frPrincipal ventana1 = new frPrincipal(user);
@@ -138,17 +146,13 @@ public class InicioSesion extends JFrame {
 					txtUsuario.setText("");
 					pwdPassword.setText("");
 				}
-					
-				
-				} 
-				catch (ClassNotFoundException e1) 
-				{
-					e1.printStackTrace();
-				}
 			}
 			
 	});
 	
+	/**
+	 * Funcionalidad del boton de resgistro. Activa la ventana de registro.
+	 */
 	bRegistro.addActionListener( new ActionListener()
 	{
 		
@@ -160,6 +164,9 @@ public class InicioSesion extends JFrame {
 		}
 	});
 	
+	/**
+	 * Funcionalidad del boton de añadir una sociedad. Activa la ventana para añadir una sociedad nueva.
+	 */
 	bAnadirSociedad.addActionListener( new ActionListener()
 	{
 		

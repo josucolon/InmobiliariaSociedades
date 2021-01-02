@@ -10,6 +10,11 @@ import LN.Sociedad;
 import LN.Usuario;
 import junit.framework.TestCase;
 
+/**
+ * Clase de testeo del dao. 
+ * @author GrupoAmuntValencia
+ *
+ */
 //@RunWith(MockitoJUnitRunner.class)
 public class DAOTest extends TestCase {
 

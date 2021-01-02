@@ -22,6 +22,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+/**
+ * Esta es la ventana para modificar los datos de una reserva.
+ * @author GrupoAmuntValencia
+ *
+ */
 public class frModificarReserva extends JFrame {
 
 	private JPanel contentPane;
@@ -30,12 +35,9 @@ public class frModificarReserva extends JFrame {
 	
 
 	/**
-	 * Launch the application.
-	 */
-
-
-	/**
 	 * Create the frame.
+	 * @param reserva
+	 * @param user
 	 */
 	public frModificarReserva(Alquiler reserva, Usuario user) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -110,6 +112,9 @@ public class frModificarReserva extends JFrame {
 		lblNewLabel.setBounds(137, 28, 217, 130);
 		contentPane.add(lblNewLabel);
 		
+		/**
+		 * Funcionalidad del boton para modificar la reserva deseada. Recoge los datos introducidos y llama al metodo para modificar los datos en la BD.
+		 */
 		btnAnadirReserva.addActionListener( new ActionListener()
 		{
 			
@@ -162,6 +167,9 @@ public class frModificarReserva extends JFrame {
 			}
 		});
 		
+		/**
+		 * Funcionalidad del boton Volver. Lo que se hace es volver a la ventana anterior, en este caso a la del menu principal.
+		 */
 		btnVolver.addActionListener( new ActionListener()
 		{
 			

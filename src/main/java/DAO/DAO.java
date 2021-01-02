@@ -11,7 +11,11 @@ import javax.jdo.Transaction;
 import LN.Usuario;
 import LN.Sociedad;
 import LN.Alquiler;
-
+/**
+ * Esta es la clase DAO. Aqui se encuentran los metodos de principales de la aplicacion para modificar, añadir, leer o eliminar información de la BD.
+ * @author GrupoAmuntValencia
+ *
+ */
 public class DAO {
 	
 	
@@ -19,6 +23,10 @@ public class DAO {
 	private static PersistenceManager persistentManager =  persistentManagerFactory.getPersistenceManager();
 	private static Transaction transaction = persistentManager.currentTransaction();;
 	
+	/**
+	 * Metodo generico para guardar un objeto.
+	 * @param object
+	 */
 	public static void GuardarObjeto (Object object)
 	{
 		
@@ -47,6 +55,10 @@ public class DAO {
 		}	
 	}
 	
+	/**
+	 * Metodo que lee las sociedades guardadas en la BD.
+	 * @return devuelve un ArrayList con todas las sociedades.
+	 */
 	@SuppressWarnings("unchecked")
 	public static ArrayList<Sociedad> LeerSociedades ()
 	{
@@ -81,7 +93,10 @@ public class DAO {
 		return sociedades;
 	}
 
-	
+	/**
+	 * Metodo que lee los usuarios guardados en la BD.
+	 * @return devuelve un ArrayList con todas los usuarios.
+	 */
 	public static ArrayList<Usuario> LeerUsuarios ()
 	{
 	
@@ -114,7 +129,11 @@ public class DAO {
 	
 		return usuarios;
 	}
-	
+	/**
+	 * Metodo que recoge el usuario que se se encuentra utilizando la aplicacion.
+	 * @param dni
+	 * @return devuelve el usuario.
+	 */
 	public static Usuario getUser (String dni)
 	{
 	
@@ -152,9 +171,13 @@ public class DAO {
 	
 		return user;
 	}
-
+/**
+ * Metodo que lee las reservas de la BD que tiene el usuario que está utilizando la aplicación 
+ * @param dni
+ * @return devuelve un ArrayList con todas las reservas del usuario.
+ */
 	@SuppressWarnings("rawtypes")
-	public static ArrayList<Alquiler> LeerAlquiler ()
+	public static ArrayList<Alquiler> LeerAlquiler (String dni)
 	{
 	
 		
@@ -169,7 +192,11 @@ public class DAO {
 			
 			for (Alquiler alquiler : extent)
 			{
-				alquileres.add (alquiler);
+				if(alquiler.getDniUsuario()==dni)
+				{
+					alquileres.add (alquiler);
+				}
+				
 			}
 
 			transaction.commit();
@@ -186,7 +213,14 @@ public class DAO {
 		
 		return alquileres;
 	}
-	
+	/**
+	 * Metodo que guarda una sociedad en la BD.
+	 * @param id
+	 * @param nombre
+	 * @param capacidadMax
+	 * @param direccion
+	 * @return devuelve un true si es correcto y un flase en caso contrario.
+	 */
 	public static boolean addSociedad (int id, String nombre, int capacidadMax, String direccion)
 	{
 		try{
@@ -206,6 +240,17 @@ public class DAO {
 		}
 	}
 	
+	/**
+	 * Metodo que añade a la BD un usuario.
+	 * @param dni
+	 * @param password
+	 * @param nombre
+	 * @param apellido
+	 * @param anoNac
+	 * @param correo
+	 * @param tlf
+	 * @return devuelve un true si es correcto y un flase en caso contrario.
+	 */
 	public static boolean addUsuario (String dni, String password, String nombre, String apellido, int anoNac, String correo, int tlf)
 	{
 		try{
@@ -226,6 +271,17 @@ public class DAO {
 		
 	}
 	
+	/**
+	 * Metodo que añade uan resrva a la BD.
+	 * @param id
+	 * @param hora
+	 * @param dia
+	 * @param mes
+	 * @param anyo
+	 * @param dniUsuario
+	 * @param idSociedad
+	 * @return devuelve un true si es correcto y un flase en caso contrario.
+	 */
 	public static boolean addAlquiler (int id, int hora, int dia, int mes, int anyo, String dniUsuario, int idSociedad)
 	{
 		try{
@@ -245,6 +301,14 @@ public class DAO {
 		return false;
 	}
 	
+	/**
+	 * Metodo que modifica una sociedad en la BD.
+	 * @param id
+	 * @param nombre
+	 * @param capacidadMax
+	 * @param direccion
+	 * @return devuelve un true si es correcto y un flase en caso contrario.
+	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static boolean modificarSociedad(int id, String nombre, int capacidadMax, String direccion)
 	{
@@ -277,6 +341,17 @@ public class DAO {
 		return false;
 	}
 	
+	/**
+	 * Metodo que modifica un usuario en la BD.
+	 * @param dni
+	 * @param password
+	 * @param nombre
+	 * @param apellido
+	 * @param anoNac
+	 * @param correo
+	 * @param tlf
+	 * @return devuelve un true si es correcto y un flase en caso contrario.
+	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static boolean modificarUsuario( String dni, String password, String nombre, String apellido, int anoNac, String correo, int tlf)
 	{
@@ -312,6 +387,17 @@ public class DAO {
 		return false;
 	}
 	
+	/**
+	 * Metodo para modificar una resrva de la BD.
+	 * @param id
+	 * @param hora
+	 * @param dia
+	 * @param mes
+	 * @param anyo
+	 * @param dniUsuario
+	 * @param idSociedad
+	 * @return devuelve un true si es correcto y un flase en caso contrario.
+	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static boolean modificarAlquiler( int id, int hora, int dia, int mes, int anyo, String dniUsuario, int idSociedad)
 	{
@@ -347,6 +433,11 @@ public class DAO {
 		return false;
 	}
 	
+	/**
+	 * Metodo para eliminar una sociedad de la BD.
+	 * @param id
+	 * @return devuelve un true si es correcto y un flase en caso contrario.
+	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static boolean eliminarSociedad(int id)
 	{
@@ -379,6 +470,12 @@ public class DAO {
 		return false;
 	}
 	
+	/**
+	 * Metodo para eliminar un usuario de la BD.
+	 * @param dni
+	 * @return devuelve un true si es correcto y un flase en caso contrario.
+	 */
+	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static boolean eliminarUsuario( String dni)
 	{
@@ -410,6 +507,10 @@ public class DAO {
 		return false;
 	}
 	
+	/**
+	 * Metodo para eliminar una reserva de la BD.
+	 * @param id
+	 */
 	public static void eliminarAlquiler( int id)
 	{
 		Extent<Alquiler> extent = (Extent) persistentManager.getExtent(Alquiler.class, false);
@@ -437,6 +538,9 @@ public class DAO {
 		}finally{}
 	}
 	
+	/**
+	 * Metodo para cerrar la BD.
+	 */
 	public static void cerrarBD()
 	{
 		if (persistentManager != null && !persistentManager.isClosed()) 

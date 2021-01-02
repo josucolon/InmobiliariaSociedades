@@ -13,15 +13,17 @@ import javax.swing.border.EmptyBorder;
 import LN.Usuario;
 import javax.swing.JButton;
 
+/**
+ * Es la ventana del menu principal de la aplicacion.
+ * @author GrupoAmuntValencia
+ *
+ */
 public class frPrincipal extends JFrame {
 
 	private JPanel contentPane;
 	private Usuario usuario;
 
-	/**
-	 * Launch the application.
-	 */
-
+	
 	/**
 	 * Create the frame.
 	 */
@@ -52,6 +54,10 @@ public class frPrincipal extends JFrame {
 		btnVolver.setBounds(117, 200, 166, 29);
 		contentPane.add(btnVolver);
 		
+		
+		/**
+		 * Funcionalidad del boton reserva. Lleva al usuario a una nueva ventana, en este caso la de reservar.
+		 */
 		btnReserva.addActionListener( new ActionListener() 
 		{
 				
@@ -64,6 +70,9 @@ public class frPrincipal extends JFrame {
 	
 		});
 		
+		/**
+		 *  Funcionalidad del boton Lista de reservas. Lleva al usuario a una nueva ventana, en este caso la lista de reservas que hay en la aplicacion.
+		 */
 		btnListaReservas.addActionListener( new ActionListener() 
 		{
 				
@@ -76,6 +85,9 @@ public class frPrincipal extends JFrame {
 	
 		});
 		
+		/**
+		 *  Funcionalidad del boton modificar Datos. Lleva al usuario a una nueva ventana, en este caso la de modificar los datos del usuario.
+		 */
 		btnModDatos.addActionListener( new ActionListener() 
 		{
 				
