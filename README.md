@@ -1,5 +1,5 @@
 # InmobiliariaSociedades
-_Se trata de un proyecto colaborativo junto al ayuntamiento de Donostia para el desarrollo de una aplicación que permita la gestión de_ _sociedades gastronómicas._
+_Se trata de un proyecto colaborativo junto al Ayuntamiento de Donostia para el desarrollo de una aplicación que permita la gestión de_ _sociedades gastronómicas._
 _El ayuntamiento detectó hace ya unos cuantos meses la necesidad de crear una aplicación que diese respuesta a las personas que no podían_ _acudir a la propia sociedad para reservar un espacio para comer o cenar. Hoy en día mucha gente prefiere realizar las gestiones vía online._ _Ahí es donde entra esta aplicación._
 
 ## Comenzando 🚀
