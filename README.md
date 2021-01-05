@@ -53,6 +53,10 @@ _Estas son las herramienta utilizadas durante el proyecto_
 * [Doxygen](https://www.doxygen.nl/index.html) - Herramienta para documentación del proyecto
 * [Maven](https://maven.apache.org/) - Manejador de dependencias
 * [Eclipse](https://www.eclipse.org/downloads/) - Plataforma de Software para elaborar proyectos
+* [Javadoc](https://www.oracle.com/es/technical-resources/articles/java/javadoc-tool.html) - Utilidad de Oracle para la generación de documentación
+* [Datanucleus](https://www.datanucleus.org/) - Proyecto que proporciona productos software en torno a la gestión de datos en Java
+* [Jacoco](https://www.jacoco.org/) - Herramienta para la cobertura de código en Java
+* [Junit](https://junit.org/junit5/) - Conjunto de bibliotecas para la creación de pruebas unitarias en aplicaciones Java
 
 ## Autores ✒️
 
