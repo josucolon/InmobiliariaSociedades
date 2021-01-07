@@ -87,6 +87,7 @@ public class frAnadirSociedad extends JFrame {
 		JLabel lblNewLabel = new JLabel("New label");
 		//lblNewLabel.setIcon(new ImageIcon(InicioSesion.class.getResource("/images/logo.png")));
 		lblNewLabel.setBounds(137, 28, 217, 130);
+		lblNewLabel.setIcon(new ImageIcon("images/logo.png"));
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblerror = new JLabel("Porfavor, rellene todos los datos para poder continuar.");

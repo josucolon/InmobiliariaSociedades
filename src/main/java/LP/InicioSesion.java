@@ -114,6 +114,7 @@ public class InicioSesion extends JFrame {
 		JLabel lblNewLabel = new JLabel("New label");
 		//lblNewLabel.setIcon(new ImageIcon(InicioSesion.class.getResource("/images/logo.png")));
 		lblNewLabel.setBounds(137, 28, 217, 130);
+		lblNewLabel.setIcon(new ImageIcon("images/logo.png"));
 		contentPane.add(lblNewLabel);
 		
 	/**
